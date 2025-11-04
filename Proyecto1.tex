@@ -1,0 +1,63 @@
+\documentclass[]{article}
+
+%opening
+\title{Proyecto 1: Métodos numéricos del Z-spline cúbico}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+\section{Los Z-splines}
+
+
+\section{El Z-spline cúbico} 
+
+La función base Z-spline cúbica para datos a intervalos arbitrarios $a_{1}, a_{2}, a_{3}$ and $a_{4}$
+está dada por 
+\begin{displaymath}
+\widetilde{Z}_{1} (x) = \left\{
+\begin{array}{lll}
+0&   $ $  &  x < -a_{1}-a_{2} \\ [0.2cm]
+\left( \frac{a_{2}+a_{1}}{a_{1}} \right) + \left(
+\frac{3a_{2}+a_{1}}{a_{2}a_{1}} \right) x
+\\ [0.1cm] \quad  + \frac{3a_{2}+2a_{1}}{a_{2}a_{1}(a_{2}+a_{1})}
+x^2 + \frac{1}{a_{2}a_{1}(a_{2}+a_{1})}x^{3} &
+$ $  &  -a_{1}-a_{2} \leq x \leq -a_{2}, \\ [0.2cm]
+1- \left( \frac{1}{a_{3}}-\frac{1}{a_{2}} \right) x \\ [0.1cm] \quad
+- \frac{a_{3}+2(a_{2}+a_{1})}{a_{3}a_{2}(a_{2}+a_{1})} x^2
+- \frac{a_{3}+a_{2}+a_{1}}{a_{3}a_{2}^2(a_{2}+a_{1})} x^3 &  
+$ $  &  -a_{2} \leq x \leq 0, \\ [0.2cm]
+1+ \left( \frac{1}{a_{2}}-\frac{1}{a_{3}} \right) x \\ [0.1cm]  \quad
+- \frac{a_{2}+2(a_{3}+a_{4})}{a_{2}a_{3}(a_{3}+a_{4})} x^2
++ \frac{a_{2}+a_{3}+a_{4}}{a_{2}a_{3}^2(a_{3}+a_{4})} x^3 &  
+$ $  &  0 \leq x \leq a_{3}, \\ [0.2cm]
+\left( \frac{a_{3}+a_{4}}{a_{4}} \right) - \left(
+\frac{3a_{3}+a_{4}}{a_{3}a_{4}} \right) x
+\\ [0.1cm]  \quad  + \frac{3a_{3}+2a_{4}}{a_{3}a_{4}(a_{3}+a_{4})} x^2
+- \frac{1}{a_{3}a_{4}(a_{3}+a_{4})}x^{3} &  
+$ $  &  a_{3} \leq x \leq a_{3}+a_{4}, \\ [0.2cm]
+0&   $ $ & x > a_{3}+a_{4}.
+\end{array}
+\label{eq:aiz1}
+\right.
+\end{displaymath}
+
+
+\subsection{Z-spline cúbico en los extremos de un intervalo}
+
+\section{Fórmula de integración numérica}
+
+\section{Fórmula de derivación numérica}
+\section{Convergencia}
+\subsection{Integración}
+\subsection{Derivación}
+\subsection{Interpolaicón equidistante en 2D}
+\subsection{Interpolación en 1D con puntos arbitrarios}
+
+
+\end{document}
