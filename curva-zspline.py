@@ -12,7 +12,7 @@ import math
 #  Conjunto de puntos 
 #======================
 # Número de puntos
-nump1:np.int32 = 5
+nump1:np.int32 = 64
 nump2:np.int32 = 0
 nump = nump1 + nump2
 # Dimensión
@@ -46,3 +46,8 @@ plt.xlabel("Coordenada x")
 plt.ylabel("Coordenada y")
 plt.title("Curva cerrada Z-spline en 2D")
 plt.show()
+XX = np.linspace(0.0,2*np.pi,n+1)
+xx1 = np.cos(XX[0:n])
+yy1 = np.sin(XX[0:n]) 
+errorL2 = np.linalg.norm(xx1-x1)*(2.0*np.pi/n) 
+print(errorL2)
