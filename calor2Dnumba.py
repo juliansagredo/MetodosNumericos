@@ -27,7 +27,7 @@ L = np.array([1.0,1.0])
 # Constante de difusión 
 k = 0.2
 # Pasos de tiempo
-pasos = 1000
+pasos = 10000
 #-------------------------------------------
 
 #=========================
@@ -54,10 +54,16 @@ un = np.zeros(nt,dtype=np.float64)  # arreglo de escritura
 #  Función sin intérprete de python 
 #====================================
 @jit(nopython=True)
-def evolucion(u,n,udx2,dt,i,k):
+def evolucion(u,n,dx,udx2,dt,i,k):
     jp1 = i + n[0]
     jm1 = i - n[0]
-    laplaciano = (u[i-1]-2.0*u[i]+u[i+1])*udx2[0] + (u[jm1]-2.0*u[i]+u[jp1])*udx2[1]
+    #laplaciano = (u[i-1]-2.0*u[i]+u[i+1])*udx2[0] + (u[jm1]-2.0*u[i]+u[jp1])*udx2[1]
+    usqr2  = 1.0/(np.sqrt(2.0))
+    udxdy = 1.0/(dx[0]*dx[1])
+    laplaciano = 0.5*(u[i-1]-2.0*u[i]+u[i+1])*udx2[0]  \
+               + 0.5*(u[jm1]-2.0*u[i]+u[jp1])*udx2[1]  \
+               + 0.5*usqr2*(u[jp1+1]-2.0*u[i]+u[jm1-1])*udxdy \
+               + 0.5*usqr2*(u[jp1-1]-2.0*u[i]+u[jm1+1])*udxdy
     unueva = u[i] + dt*k*laplaciano
     return unueva
 
@@ -65,11 +71,11 @@ def evolucion(u,n,udx2,dt,i,k):
 #  Loop acelerado sin intérprete de python
 #===========================================
 @jit(nopython=True)
-def solucion(u,un,udx2,dt,n,k):
+def solucion(u,un,dx,udx2,dt,n,k):
    for jj in range(1,n[1]-1):
      for ii in range(1,n[0]-1):
          i = ii + n[0]*jj
-         unueva = evolucion(u,n,udx2,dt,i,k)
+         unueva = evolucion(u,n,dx,udx2,dt,i,k)
          if i == int(nt/2)+int(n[0]/2):
              unueva = 1.0
          un[i] = unueva
@@ -79,7 +85,7 @@ def solucion(u,un,udx2,dt,n,k):
 #======================
 start = time.time()
 for t in range(1,pasos+1):
-    solucion(u,un,udx2,dt,n,k)
+    solucion(u,un,dx,udx2,dt,n,k)
     u = un
     if t%100==0: print("Iteración = ",t)
 end = time.time()

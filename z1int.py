@@ -50,19 +50,19 @@ if __name__ == "__main__":
    #================================
    # Ejemplo 1: el Z1 para ai dado 
    #================================
-   N = 100000
+   N = 5
    x1 = np.linspace(0.0,1.0,N)
-   f1 = np.sin(2.0*np.pi*x1)
+   f1 = np.sin(np.pi*x1)
    rng = np.random.default_rng() 
    x2 = rng.uniform(low=0.0, high=1.0, size=N)
    x2 = np.sort(x2)
    x2[0] = 0.0
    x2[N-1] = 1.0
-   f2 = np.sin(2.0*np.pi*x2) 
+   f2 = np.sin(np.pi*x2) 
    intf1 = z1int(x1,f1) 
    intf2 = z1int(x2,f2)
-   print("Integral de f (equidistante) = ",intf1)
-   print("Integral de f (al azar) = ",intf2)
+   print("Error de la integral (equidistante) = ",intf1-2.0/np.pi)
+   print("Error de la integral (al azar) = ",intf2-2.0/np.pi)
    plt.plot(x2,f2,linewidth=4,color="purple")
    plt.plot(x1,f1,linewidth=1,color="orange")
    plt.grid()

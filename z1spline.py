@@ -221,7 +221,7 @@ if __name__ == "__main__":
    #===========================================
    if ejemplo == 2:
      # Número de puntos
-     N1 = 8 
+     N1 = 40
      # Datos en posiciones al azar 
      rng = np.random.default_rng()
      x1 = rng.uniform(low=0.0, high=1.0, size=N1)

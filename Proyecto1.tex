@@ -15,6 +15,149 @@
 \section{Los Z-splines}
 
 
+
+\subsection{Introducción}
+
+Los Z-splines constituyen una familia de splines cardinales de soporte
+compacto que preservan momentos discretos y poseen alto orden de
+regularidad. La idea central es construir una base spline 
+cuya definición incorpora explícitamente operadores de diferencias 
+finitas derivados de desarrollos de Taylor. Su creador, 
+Julián T. Becerra-Sagredo, desarrolló esta teoría en dos trabajos clave
+(2003 y 2020), en los cuales se presentan tanto la construcción como 
+sus propiedades analíticas y aplicaciones.
+
+\subsection{Definición cardinal y construcción básica}
+
+Sea $\{x_j\} = \{j\}$ una malla equiespaciada.  
+Los Z-splines se definen mediante un núcleo cardinal $Z_m(x)$ tal que la
+interpolación de un conjunto de datos $\{y_j\}$ está dada por
+
+\[
+f_m(x) = \sum_{j\in\mathbb{Z}} y_j \, Z_m(x - j).
+\]
+
+Cada función base $Z_m$ es un polinomio por tramos de grado $2m-1$ y con
+regularidad $C^{m-1}$. El parámetro $m$ determina el orden del spline.
+
+La construcción impone condiciones de interpolación entre nodos y
+conservación de momentos discretos. Para cada intervalo
+$[j,j+1]$, el polinomio está determinado por un conjunto de condiciones
+de tipo Hermite–Birkhoff derivadas de operadores de diferencias finitas.
+
+\subsection{Conservación de momentos}
+
+Una de las propiedades fundamentales es que las Z-splines preservan los
+primeros $2m-1$ momentos discretos. Sea
+
+\[
+M_k = \sum_j y_j j^k, \qquad k=0,\dots,2m-2,
+\]
+
+entonces la interpolante satisface
+
+\[
+\int_{-\infty}^{\infty} x^k f_m(x) \, dx = M_k,
+\]
+
+lo que asegura que la interpolación no altera estos invariantes
+(discretos o físicos).
+
+\subsection{Reproducción polinómica}
+
+El artículo demuestra que las Z-splines reproducen exactamente
+polinomios hasta grado $2m-2$:
+
+\[
+p(x) = x^n, \qquad n \le 2m-2 \quad \Rightarrow \quad 
+f_m(x) = p(x).
+\]
+
+Esto implica un orden de aproximación
+
+\[
+\| f - f_m \| = \mathcal{O}(h^{\,2m-1}),
+\]
+
+cuando $f$ es suficientemente regular.
+
+\subsection{Soporte compacto y regularidad}
+
+Cada $Z_m$ tiene soporte compacto mínimo:
+
+\[
+Z_m(x) = 0 \qquad \text{si } |x| > m,
+\]
+
+y regularidad
+
+\[
+Z_m \in C^{m-1}.
+\]
+
+Esto permite su uso eficiente en contextos numéricos, especialmente en
+métodos de remapeo o mallas adaptativas.
+
+\subsection{Relación con diferencias finitas}
+
+Una contribución teórica clave es que los coeficientes de los polinomios
+que forman $Z_m$ coinciden con los coeficientes de operadores de
+diferencias finitas de orden elevado. En particular, se demuestra que
+para derivadas,
+
+\[
+f_m^{(k)}(x_j) = \sum_{\ell=-m}^m c^{(k)}_{\ell} \, y_{j+\ell},
+\]
+
+donde los $c^{(k)}_\ell$ son coeficientes de diferencias finitas
+centradas obtenidos por expansión de Taylor.
+
+\subsection{Límite hacia la función sinc}
+
+A medida que $m \to \infty$, las Z-splines convergen hacia la función
+ideal de reconstrucción cardinal:
+
+\[
+Z_m(x) \longrightarrow \operatorname{sinc}(x)
+= \frac{\sin(\pi x)}{\pi x}.
+\]
+
+Esto establece un vínculo entre splines compactos y teoría de muestreo.
+
+\subsection{Z-splines en mallas no uniformes}
+
+Los artículos extienden la teoría a mallas arbitrarias
+$\{x_j\}$ no equidistantes. En ese caso, el núcleo cardinal ya no es
+trasladable, y se construyen polinomios locales mediante matrices de
+diferencias finitas adaptadas a la geometría de los nodos.
+
+En regiones de frontera se emplean splines ``one-sided'', lo cual permite
+resolver la falta de simetría.
+
+\subsection{Aplicaciones numéricas}
+
+Las Z-splines son especialmente útiles en contextos donde es esencial la
+conservación de cantidades físicas discretas:
+
+\begin{itemize}
+	\item métodos de remapeo ALE y semi-Lagrangianos,
+	\item interpolaciones conservativas en dinámica de fluidos,
+	\item regularización de funciones delta,
+	\item remallado adaptativo,
+	\item filtrado numérico (denoising) preservando momentos.
+\end{itemize}
+
+En estas aplicaciones, la preservación de momentos juega un papel
+fundamental para mantener estabilidad física del sistema.
+
+\subsection{Conclusión}
+
+Los Z-splines constituyen una herramienta moderna de
+interpolación de gran interés tanto teórico como práctico, especialmente
+en contextos de simulación numérica donde la preservación de invariantes
+es esencial.
+
+
 \section{El Z-spline cúbico} 
 
 La función base Z-spline cúbica para datos a intervalos arbitrarios $a_{1}, a_{2}, a_{3}$ and $a_{4}$
