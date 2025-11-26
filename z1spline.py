@@ -221,7 +221,7 @@ if __name__ == "__main__":
    #===========================================
    if ejemplo == 2:
      # Número de puntos
-     N1 = 40
+     N1 = 10
      # Datos en posiciones al azar 
      rng = np.random.default_rng()
      x1 = rng.uniform(low=0.0, high=1.0, size=N1)
@@ -233,11 +233,14 @@ if __name__ == "__main__":
      x1[0] = 0.0; x1[N1-1] = 1.0
      f1 = np.sin(2.0*np.pi*x1)
      # Datos interpolados
-     N2 = 200
+     N2 = 1000
      x2 = np.linspace(0.0,1.0,N2)
      f2 = zspline(f1,x1,x2) 
-     plt.plot(xe,fe,linewidth=1,color="black")
-     plt.plot(x2,f2,linewidth=4) 
-     plt.plot(x1,f1,"ko")
-     plt.show()
+     f = np.sin(2.0*np.pi*x2)
+     error =   np.sqrt(np.trapz((f2-f)**2,x2))
+     print("Error de intepolación = ",error)
+     #plt.plot(xe,fe,linewidth=1,color="black")
+     #plt.plot(x2,f2,linewidth=4) 
+     #plt.plot(x1,f1,"ko")
+     #plt.show()
    
