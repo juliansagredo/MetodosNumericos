@@ -21,13 +21,13 @@ from numba import jit
 #=========================
 #-------------------------------------------
 # Número de celdas
-n = np.array([512,512])
+n = np.array([32,32])
 # Tamaño del dominio (menor que uno) 
 L = np.array([1.0,1.0]) 
 # Constante de difusión 
 k = 0.2
 # Pasos de tiempo
-pasos = 10000
+pasos = 10
 #-------------------------------------------
 
 #=========================
@@ -49,6 +49,11 @@ print("celdas = ",nt)
 # Llenar la solución con ceros 
 u = np.zeros(nt,dtype=np.float64)   # arreglo de lectura
 un = np.zeros(nt,dtype=np.float64)  # arreglo de escritura
+
+x_values = np.linspace(0.0, 1.0, n[0])
+y_values = np.linspace(0.0, 1.0, n[1])
+X, Y = np.meshgrid(x_values, y_values)
+u = (np.sin(4.0*np.pi*X)*np.sin(4.0*np.pi*Y)).reshape(-1)
 
 #====================================
 #  Función sin intérprete de python 
@@ -76,8 +81,8 @@ def solucion(u,un,dx,udx2,dt,n,k):
      for ii in range(1,n[0]-1):
          i = ii + n[0]*jj
          unueva = evolucion(u,n,dx,udx2,dt,i,k)
-         if i == int(nt/2)+int(n[0]/2):
-             unueva = 1.0
+         #if i == int(nt/2)+int(n[0]/2):
+         #    unueva = 1.0
          un[i] = unueva
 
 #======================
@@ -96,6 +101,7 @@ print("Tardó: ",end-start,"s")
 #=======================================
 x,y = np.meshgrid(np.arange(0,L[0],dx[0]),np.arange(0,L[1],dx[1]))
 ax = plt.axes(projection='3d')
+ax.set_zlim(-1,1)
 up = np.reshape(u,(n[0],n[1]))
 ax.plot_surface(x,y,up,cmap=cm.hsv)
 plt.show()

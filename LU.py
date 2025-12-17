@@ -51,22 +51,21 @@ if __name__=="__main__":
   #==================
   #  Dimensión n x n  
   #==================
-  n = 1000
+  n = 9500 
   #======================================
   #  Matriz aumentada (números al azar) 
   #======================================
+  print("Matriz de n x n con n = ",n)
   a = np.zeros((n,n+1),dtype=np.float64)
-  for i in range(n):
-    for j in range(n+1):
-        a[i,j] = 1.0+np.random.rand(1)
+  a[:] = np.random.randn(*a.shape)
+  
   #============================================
   #  Obtener la soución con nuestro algoritmo
   #============================================
-  t1 = time.time()
-  x = gauss(a) 
-  np.linalg.solve  
-  t2 = time.time()
-  print("Nuestro algoritmo toma ",t2-t1)
+  #t1 = time.time()
+  #x = gauss(a) 
+  #t2 = time.time()
+  #print("Nuestro algoritmo toma ",t2-t1)
 
   #==============================
   #  Obtener solución con numpy 
@@ -88,9 +87,9 @@ if __name__=="__main__":
   #============================
   #  Matriz diagonal con cupy
   #============================
-  #index = np.random.randint(0,n,10)
-  #for i in index:
-  #  print("x1-x2 = ", i,x[i]-y[i])
-  #  print("x1-x3 = ", i,x[i]-z[i]) 
+#  index = np.random.randint(0,n,10)
+#  for i in index:
+#    print("x1-x2 = ", i,y[i]-z[i])
+#    print("x1-x3 = ", i,y[i]-z[i]) 
 
 

@@ -1,0 +1,283 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2024.12.22)  16 DEC 2025 18:16
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**Proyecto2.tex
+(./Proyecto2.tex
+LaTeX2e <2020-02-02> patch level 2
+L3 programming layer <2020-02-14>
+(/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2019/12/20 v1.4l Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2019/12/20 v1.4l Standard LaTeX file (size option)
+)
+\c@part=\count167
+\c@section=\count168
+\c@subsection=\count169
+\c@subsubsection=\count170
+\c@paragraph=\count171
+\c@subparagraph=\count172
+\c@figure=\count173
+\c@table=\count174
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen134
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2020/01/20 v2.17e AMS math features
+\@mathmargin=\skip49
+
+For additional information on amsmath, use the `?' option.
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
+Package: amstext 2000/06/29 v2.01 AMS text
+
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
+File: amsgen.sty 1999/11/30 v2.0 generic functions
+\@emptytoks=\toks14
+\ex@=\dimen135
+))
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
+Package: amsbsy 1999/11/29 v1.2d Bold Symbols
+\pmbraise@=\dimen136
+)
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2016/03/08 v2.02 operator names
+)
+\inf@bad=\count175
+LaTeX Info: Redefining \frac on input line 227.
+\uproot@=\count176
+\leftroot@=\count177
+LaTeX Info: Redefining \overline on input line 389.
+\classnum@=\count178
+\DOTSCASE@=\count179
+LaTeX Info: Redefining \ldots on input line 486.
+LaTeX Info: Redefining \dots on input line 489.
+LaTeX Info: Redefining \cdots on input line 610.
+\Mathstrutbox@=\box45
+\strutbox@=\box46
+\big@size=\dimen137
+LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
+\macc@depth=\count180
+\c@MaxMatrixCols=\count181
+\dotsspace@=\muskip16
+\c@parentequation=\count182
+\dspbrk@lvl=\count183
+\tag@help=\toks15
+\row@=\count184
+\column@=\count185
+\maxfields@=\count186
+\andhelp@=\toks16
+\eqnshift@=\dimen138
+\alignsep@=\dimen139
+\tagshift@=\dimen140
+\tagwidth@=\dimen141
+\totwidth@=\dimen142
+\lineht@=\dimen143
+\@envbody=\toks17
+\multlinegap=\skip50
+\multlinetaggap=\skip51
+\mathdisplay@stack=\toks18
+LaTeX Info: Redefining \[ on input line 2859.
+LaTeX Info: Redefining \] on input line 2860.
+)
+(/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdfmode.def
+File: l3backend-pdfmode.def 2020-02-03 L3 backend support: PDF mode
+\l__kernel_color_stack_int=\count187
+\l__pdf_internal_box=\box47
+)
+(./Proyecto2.aux)
+\openout1 = `Proyecto2.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
+LaTeX Font Info:    ... okay on input line 9.
+
+Overfull \hbox (16.6254pt too wide) in paragraph at lines 20--21
+\OT1/cmr/m/n/10 La soluci^^Son de sis-temas lin-eales $\OML/cmm/m/it/10 A\OT1/c
+mr/bx/n/10 x \OT1/cmr/m/n/10 = \OT1/cmr/bx/n/10 b$ \OT1/cmr/m/n/10 es un prob-l
+ema fun-da-men-tal en matem^^Saticas
+ []
+
+
+Overfull \hbox (6.94498pt too wide) in paragraph at lines 42--43
+[]\OT1/cmr/m/n/10 Dif^^S^^Pcil de par-alelizar efi-cien-te-mente en ar-qui-tec-
+turas dis-tribuidas sin t^^Secnicas
+ []
+
+[1
+
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3]
+Overfull \hbox (48.5447pt too wide) in paragraph at lines 167--167
+[]\OT1/cmr/bx/n/14.4 M^^Setodos Multi-grid y Bib-liote-cas Mod-er-nas (PyAMG
+ []
+
+[4]
+Overfull \hbox (23.24876pt too wide) in paragraph at lines 204--205
+[]\OT1/cmr/bx/n/10 Suavizado post{correcci^^Son\OT1/cmr/m/n/10 : aplicar $\OML/
+cmm/m/it/10 k[]$ \OT1/cmr/m/n/10 it-era-ciones adi-cionales del suavizador. 
+ []
+
+
+Overfull \hbox (16.72278pt too wide) in paragraph at lines 216--217
+[]\OT1/cmr/m/n/10 Requiere ade-cuada con-strucci^^Son de op-er-adores de trans-
+fer-en-cia y suavizadores. 
+ []
+
+[5]
+Overfull \hbox (16.93015pt too wide) in paragraph at lines 273--274
+[]\OT1/cmr/m/n/10 Implementaci^^Son al-ta-mente op-ti-mizada de AMG y pre-condi
+-cionadores h^^S^^Pbridos. 
+ []
+
+[6]
+Overfull \hbox (8.17949pt too wide) in paragraph at lines 305--305
+[]\OT1/cmr/bx/n/14.4 Algoritmos Mul-ti-nivel en GPU para la Soluci^^Son
+ []
+
+
+Overfull \hbox (2.98671pt too wide) in paragraph at lines 311--312
+\OT1/cmr/m/n/10 cr^^S^^Pticos en ar-qui-tec-turas GPU. Adem^^Sas, el m^^Setodo 
+mantiene es-ta-bil-i-dad num^^Serica
+ []
+
+[7] [8]
+! Missing $ inserted.
+<inserted text> 
+                $
+l.344 (figura 1, cartón de huevos iniial (Figure_
+                                                  0.png))
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.345 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.348 ...és de 10 pasos en malla 128x128 (Figure_
+                                                  1.png))
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.349 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.352 ...pués de 10 pasos en malla 64x64 (Figure_
+                                                  2.png))
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.353 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (21.09325pt too wide) in paragraph at lines 352--353
+[]\OT1/cmr/m/n/10 (figura 3, cart^^Son de huevos fi-nal de-spu^^Ses de 10 pa-so
+s en malla 64x64 (Figure$[]\OML/cmm/m/it/10 :png\OT1/cmr/m/n/10 ))$ 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.356 ...pués de 10 pasos en malla 32x32 (Figure_
+                                                  3.png))
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.357 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (21.09325pt too wide) in paragraph at lines 356--357
+[]\OT1/cmr/m/n/10 (figura 4, cart^^Son de huevos fi-nal de-spu^^Ses de 10 pa-so
+s en malla 32x32 (Figure$[]\OML/cmm/m/it/10 :png\OT1/cmr/m/n/10 ))$ 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.360 ...pués de 10 pasos en malla 16x16 (Figure_
+                                                  4.png))
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.361 
+      
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+
+Overfull \hbox (21.09325pt too wide) in paragraph at lines 360--361
+[]\OT1/cmr/m/n/10 (figura 5, cart^^Son de huevos fi-nal de-spu^^Ses de 10 pa-so
+s en malla 16x16 (Figure$[]\OML/cmm/m/it/10 :png\OT1/cmr/m/n/10 ))$ 
+ []
+
+[9] (./Proyecto2.aux) ) 
+Here is how much of TeX's memory you used:
+ 1042 strings out of 481239
+ 13819 string characters out of 5920376
+ 251131 words of memory out of 5000000
+ 16355 multiletter control sequences out of 15000+600000
+ 539796 words of font info for 50 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 30i,5n,25p,531b,185s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.
+enc}</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/sh
+are/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb></usr/share/tex
+live/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-di
+st/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/font
+s/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1
+/public/amsfonts/cm/cmr17.pfb></usr/share/texlive/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
+msy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.p
+fb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></u
+sr/share/texmf/fonts/type1/public/cm-super/sfrm1000.pfb>
+Output written on Proyecto2.pdf (9 pages, 177389 bytes).
+PDF statistics:
+ 91 PDF objects out of 1000 (max. 8388607)
+ 65 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+

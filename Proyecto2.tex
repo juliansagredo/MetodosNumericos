@@ -1,0 +1,368 @@
+\documentclass[]{article}
+\usepackage{amsmath} % Paquete recomendado para matemáticas
+
+
+%opening
+\title{Proyecto 2: Comparación de algoritmos para la solución de sistemas de ecuaciones lineales}
+\author{}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+
+\end{abstract}
+
+
+\section{Algoritmos Clásicos para la Solución de Sistemas de Ecuaciones Lineales}
+
+La solución de sistemas lineales $A\mathbf{x} = \mathbf{b}$ es un problema fundamental en matemáticas aplicadas, computación científica e ingeniería. En esta sección se presenta un resumen de los algoritmos más utilizados, junto con sus ventajas y desventajas.
+
+\subsection{Métodos Directos}
+
+\subsubsection{Eliminación Gaussiana (LU)}
+El método de eliminación Gaussiana factoriza la matriz como
+\[
+A = LU,
+\]
+donde $L$ es triangular inferior y $U$ triangular superior. Luego el sistema se resuelve mediante sustituciones hacia adelante y hacia atrás.
+
+\paragraph{Ventajas}
+\begin{itemize}
+	\item Método robusto y bien entendido.
+	\item Tiempo de cómputo determinista: $O(n^3)$.
+	\item Adecuado para múltiples vectores $\mathbf{b}$ (factorización única).
+\end{itemize}
+
+\paragraph{Desventajas}
+\begin{itemize}
+	\item Costoso en memoria y cómputo para matrices muy grandes.
+	\item Sensible a mal condicionamiento sin pivoteo.
+	\item Difícil de paralelizar eficientemente en arquitecturas distribuidas sin técnicas avanzadas.
+\end{itemize}
+
+\subsubsection{Descomposición de Cholesky}
+Para matrices simétricas definidas positivas, se utiliza
+\[
+A = LL^{T}.
+\]
+
+\paragraph{Ventajas}
+\begin{itemize}
+	\item Menor costo computacional: $\frac{1}{3}n^{3}$.
+	\item Estabilidad numérica superior para matrices SPD.
+\end{itemize}
+
+\paragraph{Desventajas}
+\begin{itemize}
+	\item Sólo aplica a matrices SPD.
+	\item Puede fallar si la matriz no cumple la condición.
+\end{itemize}
+
+\subsubsection{Métodos Basados en Descomposición QR}
+\[
+A = QR,
+\]
+con $Q$ ortogonal y $R$ triangular.
+
+\paragraph{Ventajas}
+\begin{itemize}
+	\item Muy estable numéricamente.
+	\item Adecuado para problemas mal condicionados o con mínimos cuadrados.
+\end{itemize}
+
+\paragraph{Desventajas}
+\begin{itemize}
+	\item Más costoso que LU: alrededor de $2n^{3}/3$.
+\end{itemize}
+
+\subsection{Métodos Iterativos}
+
+\subsubsection{Método de Jacobi}
+Basado en la descomposición
+\[
+A = D + L + U,
+\]
+la iteración es
+\[
+\mathbf{x}^{(k+1)} = D^{-1}(\mathbf{b} - (L+U)\mathbf{x}^{(k)}).
+\]
+
+\paragraph{Ventajas}
+\begin{itemize}
+	\item Fácil de implementar.
+	\item Altamente paralelizable (actualizaciones independientes).
+\end{itemize}
+
+\paragraph{Desventajas}
+\begin{itemize}
+	\item Convergencia lenta.
+	\item Requiere que $A$ sea diagonalmente dominante o SPD para asegurar convergencia.
+\end{itemize}
+
+\subsubsection{Método de Gauss--Seidel}
+\[
+\mathbf{x}^{(k+1)} = (D+L)^{-1}(\mathbf{b} - U\mathbf{x}^{(k)}).
+\]
+
+\paragraph{Ventajas}
+\begin{itemize}
+	\item Convergencia más rápida que Jacobi.
+	\item Fácil de implementar.
+\end{itemize}
+
+\paragraph{Desventajas}
+\begin{itemize}
+	\item Difícil de paralelizar.
+	\item Requiere condiciones similares a Jacobi para asegurar convergencia.
+\end{itemize}
+
+\subsubsection{Método SOR}
+El método de Sobrerrelajación Sucesiva (Successive Over-Relaxation) introduce un parámetro $\omega$:
+\[
+\mathbf{x}^{(k+1)} = (D + \omega L)^{-1} \left[(1-\omega)D - \omega U \right] \mathbf{x}^{(k)} + \omega(D+\omega L)^{-1}\mathbf{b}.
+\]
+
+\paragraph{Ventajas}
+\begin{itemize}
+	\item Más rápido que Gauss--Seidel para un $\omega$ óptimo.
+\end{itemize}
+
+\paragraph{Desventajas}
+\begin{itemize}
+	\item Elegir $\omega$ es difícil.
+	\item No siempre eficiente en matrices mal condicionadas.
+\end{itemize}
+
+\subsubsection{Métodos de Krylov (CG, GMRES, BiCGstab)}
+Métodos modernos basados en subespacios de Krylov:
+\[
+\mathcal{K}_k(A,\mathbf{r}_0) = \text{span}\{\mathbf{r}_0, A\mathbf{r}_0, A^2\mathbf{r}_0, \dots\}.
+\]
+
+\paragraph{Ventajas}
+\begin{itemize}
+	\item Altamente eficientes para matrices dispersas.
+	\item Convergencia rápida con buenos precondicionadores.
+	\item Método de Gradientes Conjugados (CG) es óptimo para SPD.
+\end{itemize}
+
+\paragraph{Desventajas}
+\begin{itemize}
+	\item Requieren precondicionamiento para un rendimiento óptimo.
+	\item GMRES puede requerir gran memoria (reinicios necesarios).
+\end{itemize}
+
+\subsection{Resumen de Elección de Método}
+
+\begin{itemize}
+	\item \textbf{Matriz densa y tamaño moderado}: LU, QR.
+	\item \textbf{Matriz SPD}: Cholesky, CG.
+	\item \textbf{Matriz dispersa grande}: Métodos de Krylov con precondicionador.
+	\item \textbf{Arquitecturas paralelas masivas}: Jacobi (simple), CG/GMRES (eficientes).
+\end{itemize}
+
+
+\section{Métodos Multigrid y Bibliotecas Modernas (PyAMG y NVIDIA AmgX)}
+
+Los métodos Multigrid (MG) constituyen una de las familias más eficientes para resolver sistemas lineales dispersos provenientes de discretizaciones de ecuaciones diferenciales parciales (EDPs), especialmente elípticas. Su eficiencia radica en combinar relajaciones locales con correcciones en mallas más gruesas, eliminando componentes de error tanto de alta como de baja frecuencia.
+
+\subsection{Idea General del Método Multigrid}
+
+Sea el sistema lineal
+\[
+A_h \mathbf{x}_h = \mathbf{b}_h,
+\]
+donde $h$ denota la resolución de la malla. Los métodos de relajación como Jacobi o Gauss--Seidel reducen eficazmente los componentes de error de alta frecuencia, pero son lentos con las componentes de baja frecuencia. Multigrid compensa esta deficiencia transfiriendo el problema a una malla más gruesa donde dichas componentes se vuelven más oscilatorias y, por lo tanto, más fáciles de eliminar.
+
+\subsubsection*{Esquema Típico Multigrid (V–cycle)}
+
+Un ciclo V estándar consta de los siguientes pasos:
+
+\begin{enumerate}
+	\item \textbf{Suavizado (relajación)}: aplicar $k_{1}$ iteraciones de un método relajante:
+	\[
+	\mathbf{x}^{(m+1)}_h = S_h(\mathbf{x}^{(m)}_h, \mathbf{b}_h).
+	\]
+	\item \textbf{Cálculo del residuo}:
+	\[
+	\mathbf{r}_h = \mathbf{b}_h - A_h \mathbf{x}_h.
+	\]
+	\item \textbf{Restricción del residuo} a la malla gruesa:
+	\[
+	\mathbf{r}_{2h} = R_{2h}^{h} \mathbf{r}_h.
+	\]
+	\item \textbf{Solución aproximada del sistema en malla gruesa}:
+	\[
+	A_{2h} \mathbf{e}_{2h} = \mathbf{r}_{2h}.
+	\]
+	\item \textbf{Prolongación de la corrección}:
+	\[
+	\mathbf{x}_h \leftarrow \mathbf{x}_h + P_h^{2h}\mathbf{e}_{2h}.
+	\]
+	\item \textbf{Suavizado post–corrección}: aplicar $k_{2}$ iteraciones adicionales del suavizador.
+\end{enumerate}
+
+\subsubsection*{Ventajas del Método Multigrid}
+\begin{itemize}
+	\item Complejidad óptima: $O(N)$ para $N$ grados de libertad.
+	\item Escalabilidad sobresaliente en problemas de gran tamaño.
+	\item Eficiente para ecuaciones elípticas, difusivas y problemas Poisson–like.
+\end{itemize}
+
+\subsubsection*{Desventajas}
+\begin{itemize}
+	\item Requiere adecuada construcción de operadores de transferencia y suavizadores.
+	\item Difícil de aplicar directamente a matrices no estructuradas sin heurísticas.
+	\item Implementación más compleja que métodos de Krylov tradicionales.
+\end{itemize}
+
+
+\subsection{Algebraic Multigrid (AMG)}
+
+Mientras que Multigrid clásico requiere jerarquías de mallas geométricas, el método AMG construye dichas mallas \emph{automáticamente} a partir de la matriz $A$. AMG permite aplicar Multigrid a problemas complejos, mallas no estructuradas y coeficientes heterogéneos.
+
+\paragraph{Ventajas del AMG}
+\begin{itemize}
+	\item No necesita malla geométrica (construcción puramente algebraica).
+	\item Excelente como precondicionador para métodos de Krylov (GMRES, CG, BiCGstab).
+	\item Adecuado para matrices muy grandes y dispersas.
+\end{itemize}
+
+\paragraph{Desventajas del AMG}
+\begin{itemize}
+	\item Mayor costo de precomputación que Multigrid geométrico.
+	\item Sensible a la estructura del grafo de $A$.
+	\item Configuración óptima depende del problema (coarsening, smoothing).
+\end{itemize}
+
+
+\subsection{PyAMG: Implementación de AMG en Python}
+
+PyAMG es una biblioteca de Python que implementa una colección de métodos Multigrid algebraicos modernos. Está diseñada para integrarse con \texttt{NumPy}, \texttt{SciPy} y otras herramientas del ecosistema científico de Python.
+
+\subsubsection*{Características principales}
+\begin{itemize}
+	\item Implementación completa de AMG: classical Ruge--Stüben, smoothed aggregation, bootstrap AMG.
+	\item Soporte para matrices dispersas de \texttt{SciPy}.
+	\item Fácil integración con \texttt{scipy.sparse.linalg} como precondicionador.
+	\item Totalmente en CPU; ideal para prototipos y experimentación.
+\end{itemize}
+
+\subsubsection*{Ventajas}
+\begin{itemize}
+	\item Fácil de usar y de integrar con Python científico.
+	\item Ideal para investigación y pruebas rápidas.
+	\item Bien documentado y extensible.
+\end{itemize}
+
+\subsubsection*{Desventajas}
+\begin{itemize}
+	\item No acelera en GPU.
+	\item Rendimiento limitado frente a bibliotecas en C++ o CUDA.
+\end{itemize}
+
+
+\subsection{NVIDIA AmgX: AMG en GPU}
+
+NVIDIA AmgX es una biblioteca de alto rendimiento diseñada para resolver sistemas lineales dispersos mediante AMG y métodos de Krylov acelerados específicamente en GPU. Está escrita sobre CUDA y pensada para clústeres con múltiples GPUs.
+
+\subsubsection*{Características principales}
+\begin{itemize}
+	\item Implementación altamente optimizada de AMG y precondicionadores híbridos.
+	\item Métodos Krylov acelerados en GPU: CG, GMRES, BiCGstab.
+	\item Soporte multi–GPU con escalamiento distribuido.
+	\item Interfaz en C++, Python (mediante bindings) y MPI.
+	\item Diseñado para aplicaciones CFD, Poisson, ecuaciones elípticas y FEM grandes.
+\end{itemize}
+
+\subsubsection*{Ventajas}
+\begin{itemize}
+	\item Rendimiento muy superior gracias a CUDA y paralelismo masivo.
+	\item Ideal para simulaciones de gran escala.
+	\item Excelente como precondicionador de Krylov en GPU.
+	\item Puede integrarse en pipelines HPC con MPI + múltiples GPUs.
+\end{itemize}
+
+\subsubsection*{Desventajas}
+\begin{itemize}
+	\item Requiere hardware NVIDIA.
+	\item Curva de aprendizaje considerable.
+	\item Configuración compleja para problemas no estándar.
+\end{itemize}
+
+
+\subsection{Resumen Comparativo}
+
+\begin{itemize}
+	\item \textbf{PyAMG}: adecuado para investigación, prototipos, sistemas medianos y entornos CPU en Python.
+	\item \textbf{AmgX}: orientado a producción HPC, sistemas gigantes, cómputo en GPU y aplicaciones industriales.
+	\item \textbf{AMG}: precondicionador de referencia para métodos iterativos modernos.
+	\item \textbf{Multigrid geométrico}: mejor opción cuando la malla es regular y se conoce la estructura del problema.
+\end{itemize}
+
+\section{Algoritmos Multinivel en GPU para la Solución de Ecuaciones Lineales}
+
+Un enfoque relevante dentro del estudio de algoritmos eficientes para la solución de sistemas lineales es el método multinivel optimizado para GPU presentado en \textit{A GPU-based multi-level algorithm for boundary value problems} por Julián T Becerra-Sagredo. Este trabajo introduce un algoritmo denominado \emph{Geometric Single-Grid Multi-Level} (GSGML), diseñado para resolver problemas de valor de frontera que, tras discretización, conducen a sistemas lineales de gran tamaño.
+
+El objetivo principal del método es explotar el paralelismo masivo de las unidades de procesamiento gráfico (GPU) mediante una estrategia multinivel que evita la construcción explícita de jerarquías de mallas. A diferencia de los métodos multigrid clásicos, que requieren múltiples rejillas y operaciones de restricción/prolongación, el enfoque GSGML opera dentro de una única malla, aplicando operadores suavizadores y correcciones de manera jerárquica sobre la misma estructura discretizada.
+
+Desde el punto de vista algorítmico, este enfoque reduce considerablemente el costo de comunicación y las operaciones de acceso a memoria, dos factores críticos en arquitecturas GPU. Además, el método mantiene estabilidad numérica y una convergencia comparable a los esquemas multigrid tradicionales, pero con una implementación más amigable para hardware altamente paralelo.
+
+Los resultados reportados muestran una aceleración significativa frente a métodos clásicos ejecutados en CPU, y también frente a interpretaciones más directas de multigrid en GPU. La combinación de simplicidad geométrica, operación en una sola malla y adecuación natural al paralelismo hacen del GSGML un candidato importante en el diseño moderno de solvers lineales eficientes para problemas elípticos.
+
+En conclusión, este algoritmo representa una contribución dentro del ecosistema de métodos iterativos acelerados por GPU, demostrando que la arquitectura del hardware puede y debe motivar nuevas formulaciones matemáticas para la solución eficiente de sistemas lineales a gran escala.
+
+\section{Desempeño de algoritmos para la solución de sistemas lineales}
+
+A continuación se presentan tablas con  el desempeño de diferentes implementaciones de algoritmos para la solución de sistemas lineales en una laptop Pavilion HP con Geforce GTX 1650. 
+
+Los algoritmos para matrices llenas son (1) LU en python, (2) LU de numpy, (3) LU de cupy, (4) GMRES propio en C, (5) GMRES de scipy, (6) GMRES de cupy y (7) pyAMG.
+
+(poner tabla para matrices llenas aquí, hacer comentarios sobre lo que se observa)
+
+Los algoritmos para matrices de llena a esparsa son (1) GMRES de scipy y (2) GMRES de cupy. La densidad de las matrices son $d = 0.1$ y $d=0.01$. 
+
+(poner tabla para matrices de llenas a esparsas aquí, hacer comentarios sobre lo que se observa)
+
+Los algoritmos para matrices esparsas pentadiagonales son (1) ML-Sagredo-cuda, (2) ML-Sagredo-python-numba-cuda, (3) pyAMG para CPU. 
+
+(poner tabla para matrices esparsas pentadiagonales aquí, hacer comentarios sobre lo que se observa)
+
+
+\section{Estudio de la difusión multi-nivel}
+
+Como vimos en la sección anterior, los algoritmos más rápidos son lo que tienen múltiples mallas (multi-grid) o múltiples niveles (multi-level) y van resolviendo de los niveles gruesos a los finos. 
+
+A continuación presentamos figuras que ilustran el funcionamiento básico del método multi-malla. 
+
+(fórmula del cartón de huevos u = sin(4*pi*x)*sin(4*pi*y))
+
+(ecuación de calor en 2D)
+
+(figura 1, cartón de huevos iniial (Figure_0.png)) 
+
+Cuando se corre diez pasos en una malla de $128 \times 128$, casi no produce difusión.
+
+(figura 2, cartón de huevos final después de 10 pasos en malla 128x128 (Figure_1.png))
+
+Cuando se corre diez pasos en una malla de $64 \times 64$, produce más difusión, reduciendo el error más rápido. 
+
+(figura 3, cartón de huevos final después de 10 pasos en malla 64x64 (Figure_2.png))
+
+En una malla de $32 \times 32$ es  notable la difusión. 
+
+(figura 4, cartón de huevos final después de 10 pasos en malla 32x32 (Figure_3.png))
+
+En una malla de $16 \times 16$ la difusión lleva a la función casi a cero. 
+
+(figura 5, cartón de huevos final después de 10 pasos en malla 16x16 (Figure_4.png))
+
+\section{Conclusiones}
+
+Escriba sus conclusiones. 
+
+
+
+\end{document}

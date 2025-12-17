@@ -1261,7 +1261,7 @@ L = np.array([1.0,1.0],dtype=np.float64)
 n_curvas:np.int32 = 2
 # Hilos por bloque
 TILE_I:np.int32 = 32
-TILE_J:np.int32 = 16
+TILE_J:np.int32 = 32
 # Condición de frontera externa (0 = Dirichlet, 1 = Neumann) 
 bc:np.int32 = 0
 
@@ -1282,7 +1282,7 @@ print("puntos = ",n[0],"x",n[1],"=",nt)
 #===========
 #  INICIO
 #==========
-start = time.time()
+#start = time.time()
 
 #=======================================
 #  En caso de tener fronteras inmersas 
@@ -1351,6 +1351,8 @@ rhsr_h = rhs_h
 rhs_d = cuda.to_device(rhs_h)
 rhsn_d = cuda.to_device(e_h)
 rhsr_d = cuda.to_device(rhsr_h)
+
+start = time.time()
 
 #=========================
 #  Resolver la ecuación
